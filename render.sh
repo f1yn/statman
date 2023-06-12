@@ -18,6 +18,7 @@ function render() {
     line '-'
     cat "$o/timekeeper"
     cat "$o/networking"
+    cat "$o/virt-machines"
     cat "$o/memory-usage"
     cat "$o/volume"
     # advanced audio
