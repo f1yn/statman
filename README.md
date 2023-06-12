@@ -15,7 +15,7 @@ I've written this script to work on latest Fedora (38+), so you might need to mo
 
 ## Downsides (or things to be aware of):
 - It does not support active resizing. It's possible to add, but for simplicity most sizing information is only declared once in `shared.sh`. Statman is meant to be run in a fixed window.
-- You're expected to only run a single statman instance on a machine. It uses the shared `/dev/shm` memory store for pushing rendering to prevent needless disk writes. During more than one instance would causes potential conflicts to the memstore.
+- You're expected to only run a single statman instance on a machine per user. It uses the shared `/dev/shm` memory store for pushing rendering to prevent needless disk writes. Adding more than one instance (for a user) would causes potential conflicts to the memstore.
 
 
 ## Installation
