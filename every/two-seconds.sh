@@ -14,8 +14,8 @@ function render_memory_usage() {
 }
 
 function render_vm_stats() {
-    # Last line is always the grep, so avoid the last line
-    local all_virt_sessions="$(ps aux | grep -i qemu-system- | head -n -1)"
+    # First or last line will contain the grep, so avoid that line
+    local all_virt_sessions="$(ps aux | grep -i qemu-system- | grep -v 'grep')"
     local session_names="$(echo "$all_virt_sessions" | awk -F[=,] '{print $2}')"
     local session_count="$(echo "$session_names" | wc -w)"
 
