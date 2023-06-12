@@ -1,22 +1,20 @@
 <div align="center">
-  <h1>staman(-ager)</h1>
+  <h1>statman(-ager)</h1>
   <img src="https://raw.githubusercontent.com/f1yn/statman/main/.github/example.png" width="30%" height="100%">
 </div>
 
 **statman(-ager)** is a simple (Linux only) bash-based script for showing system-statics, media metadata, and whatever else you might want to use. I don't like status bars in my personal environments.
 It's intended to run in a fixed terminal window that a Linux desktop environment would load at start, ideally without any resize or decoration support.
 
-The default terminal it's rendered for is 
-
 I've written this script to work on latest Fedora (38+), so you might need to modify some of the commands to compensate for this.
 
 ## Features:
 - It's written in `bash`, easily modified for your needs. No need to build, or rely on some person's binary blob.
 - No dependencies on any fancy curses libraries
-- Support for direct rendering and lazy rendering modes, allowing you to test your changes
+- Support for direct rendering and lazy rendering modes, allowing you to test your changes.
 
 ## Downsides (or things to be aware of):
-- It does not support active resizing. It's possible to add, but for simplicity most sizing information is only declared once in `shared.sh`. Statman is meant to be run 
+- It does not support active resizing. It's possible to add, but for simplicity most sizing information is only declared once in `shared.sh`. Statman is meant to be run in a fixed window.
 - You're expected to only run a single statman instance on a machine. It uses the shared `/dev/shm` memory store for pushing rendering to prevent needless disk writes. During more than one instance would causes potential conflicts to the memstore.
 
 
