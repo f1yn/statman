@@ -1,6 +1,7 @@
-# staman(-ager)
-
-![example](.github/example.png)
+<div align="center">
+  <h1>staman(-ager)</h1>
+  <img src="https://raw.githubusercontent.com/f1yn/statman/main/.github/example.png" width="30%" height="100%">
+</div>
 
 **statman(-ager)** is a simple (Linux only) bash-based script for showing system-statics, media metadata, and whatever else you might want to use. I don't like status bars in my personal environments.
 It's intended to run in a fixed terminal window that a Linux desktop environment would load at start, ideally without any resize or decoration support.
