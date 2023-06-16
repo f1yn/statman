@@ -12,8 +12,8 @@ function render_networking() {
     local public_ip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
     local private_ip_addresses="$(hostname -I)"
     
-    line '-'
-    echo "NETWORKING:"
+    separator
+    echo "${co_label}NETWORKING:$(cor)"
     echo "Public (IPv4): $public_ip"
     echo "Private (IPv4): $private_ip_addresses"
 }

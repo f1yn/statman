@@ -49,6 +49,12 @@ your_terminal_app ./PATH_TO_STATMAN/statman.sh >/dev/null 2>&1 &
 
 > **Important!** Please configure your terminal/window manager of choice (likely using a custom config) so it renders the window without decorations. Having it show up as a normal window will not allow it to work as intended. If you're looking for a good Wayland emulator, foot is a good once. I've also included a custom config for foot in the examples directory
 
+#### Disabling color output
+
+Some people (many people) don't want color codes in their terminal output. Statman complies with the [`NO_COLOR` env rule](https://no-color.org/) to ensure that built-ins and default scripts aren't using color codes.
+
+If the environment has this (or the script is started with the flag passed), the default `co` helper will not set any color codes. 
+
 ## Customizing
 
 ### Before you customize
@@ -75,12 +81,20 @@ cat "$o/some-name"
 
 This will attach the memstore output of `some-name` to the output of statman.
 
-### Command helpers
+### Command helpers and variables
 
 - `$columns` is available in each `/every` script, and represents the current width of the terminal according to `tput`. This is helpful if you want text or elements to change if you decide you want the statman instance to render larger or smaller.
-- `bar [char_width] [percent_as_decimal]` is a progress-bar helper that will render a floating point percentage into a text-based progress bar. This is useful for monitoring resources like CPU, memory, or every things like volume.
+- `bar [char_width] [percent_as_decimal]` is a progress-bar helper that will render a floating point percentage into a text-based progress bar. This is useful for monitoring resources like CPU, memory, or every things like volume. My default `/every` scripts have examples of how this is used.
+- `line [character]` will render a line the same width of the terminal, using a specific character
+- `separator` will render a simple dash-based boundary - intended to help make various outputs more distinct
 
-My default `/every` scripts have examples of how this is used.
+#### Adding color
+
+- `co [color_code]` sets the terminal to a 64 color code using the `tput setaf [code]` command. If `NO_COLOR` is present in the env, then `co` will do nothing and not alter color codes.
+- `cor` - resets the the terminal color to the default color. If `NO_COLOR` is present in the env, then it wont make any changes to output.
+- `$co_label` - Is the variable alias for color code for labels
+- `$co_emphasis` - Is the variable alias for the default color code for emphasis (intended for things like cursors, tallies)
+- `$co_fade` - Is the variable alias for the color codes for faded text (intended for things like separators, boundaries, and less important text)
 
 ## Security considerations (and other things you should know)
 - `/dev/shm` is a user writable share in most linux distributions. When a sub directory is created for the statman init sequence, the directory is created using default folder permissions for that user. **This means that any users belonging to the correct groups, or if user

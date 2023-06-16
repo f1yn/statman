@@ -4,8 +4,6 @@ set -e
 
 statman_dir="$(dirname -- "$0")"
 
-# detect debug mode
-
 echo "STARTING STATMAN"
 
 # Include helpers and shared values
@@ -23,7 +21,7 @@ fi
 
 # START INIT
 
-# trap
+# Ensure that subprocesses exit as expected
 trap "trap - SIGTERM && kill -- -$$" INT TERM EXIT
 
 echo "-> Initiating memstore"
@@ -64,9 +62,8 @@ else
     while true; do
         # minimum wait time for each render iteration
         sleep .25 &
-        output="$(render)"
         # set cursor to front
-        echo "$output"
+        echo "$(render)"
         # waits for the sleep (ensuring min duration)
         wait $!
     done

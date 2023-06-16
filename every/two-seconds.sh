@@ -9,8 +9,8 @@ function render_memory_usage() {
     local memory=$(echo "scale=0; ($memory_decimal * 100) / 1" | bc)
     local width=$(($columns - 15))
 
-    line '-'
-    echo "MEMORY: $(bar $width $memory_decimal) $memory%"
+    separator
+    echo "${co_label}MEMORY:$(cor) $(bar $width $memory_decimal) $memory%"
 }
 
 function render_vm_stats() {
@@ -28,8 +28,8 @@ function render_vm_stats() {
     # gets added in the ps output. It would be nice to see what pci devices are
     # being used. This might mean we move this to a 5 second runtime though 
 
-    line '-'
-    echo "VIRTUAL MACHINES: ($session_count enabled)"
+    separator
+    echo "${co_label}VIRTUAL MACHINES:$(cor) ($session_count enabled)"
 
     for i in $session_names; do
         echo "- $i"
@@ -41,17 +41,17 @@ function render_now_playing() {
     local album="$(playerctl metadata album 2>/dev/null)"
     local track="$(playerctl metadata title 2>/dev/null)"
 
-    line '-'
+    separator
 
     if [ "$artist" == "" ]; then
-        echo "MEDIA STATUS: Inactive"
-        echo "MEDIA METADATA: Inactive"
+        echo "${co_label}MEDIA STATUS:$(cor) Inactive"
+        echo "${co_label}MEDIA METADATA:$(cor) Inactive"
     elif [ "$album" == "" ]; then
-        echo "MEDIA STATUS: Active"
-        echo "MEDIA METADATA: N/A (Not recognizable as a song)"
+        echo "${co_label}MEDIA STATUS:$(cor) Active"
+        echo "${co_label}MEDIA METADATA:$(cor) N/A (Not recognizable as a song)"
     else
-        echo "MEDIA STATUS: Active"
-        echo "MEDIA METADATA: $track by $artist"
+        echo "${co_label}MEDIA STATUS:$(cor) Active"
+        echo "${co_label}MEDIA METADATA:$(cor) $track by $artist"
     fi
 }
 

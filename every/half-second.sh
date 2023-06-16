@@ -15,8 +15,9 @@ function render_volume() {
     local volume="$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print $5}')"
     local volume_decimal=$(convert_volume_decimal $volume)
     local width=$(($columns - 15))
-    line '-'
-    echo "VOLUME: $(bar $width $volume_decimal) $volume"
+    separator
+    co 0
+    echo "${co_label}VOLUME:$(cor) $(bar $width $volume_decimal) $volume"
 }
 
 command_to_file "volume" "$(render_volume)"

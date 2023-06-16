@@ -5,7 +5,28 @@ current_dir="$(dirname -- "$0")"
 source "$current_dir/../shared.sh"
 
 function render_time() {
-    printf "TIME: %(%H:%M)T\n"
+    printf "$(co 11)TIME:$(cor) %(%H:%M)T\n"
+}
+
+function timekeeper_bar_render() {
+    local width="$1"
+    local percent_decimal="$2"
+
+    # How many elements to render
+    local fill_width=$(echo "scale=0; ($percent_decimal * $width) / 1" | bc)
+    local output=""
+
+    for i in $(seq $width); do
+        if (( i < fill_width )); then
+            output="$output${co_fade}·$(cor)"
+        elif (( i == fill_width )); then
+            output="$output${co_emphasis}⏺$(cor)"
+        else
+            output="$output·"
+        fi
+    done
+
+    echo "$output"
 }
 
 function render_timekeeper() {
@@ -35,7 +56,7 @@ function render_timekeeper() {
 
     let "bar_width=columns - 2"
 
-    echo "TIMEKEEPER:                                    $index"
+    echo "${co_label}TIMEKEEPER:$(cor)                                    $index"
 
     echo "|$(timekeeper_bar_render $bar_width $half_minute_percent)|"
     echo "|$(timekeeper_bar_render $bar_width $minute_percent)|"
