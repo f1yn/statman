@@ -1,8 +1,7 @@
 #! /usr/bin/env bash
 
 # Import dependancies
-current_dir="$(dirname -- "$0")"
-source "$current_dir/../shared.sh"
+source "$statman_dir/shared.sh"
 
 function render_pending_updates() {
     dnf updateinfo

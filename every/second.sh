@@ -1,8 +1,7 @@
 #! /usr/bin/env bash
 
 # Import dependancies
-current_dir="$(dirname -- "$0")"
-source "$current_dir/../shared.sh"
+source "$statman_dir/shared.sh"
 
 function render_time() {
     printf "$(co 11)TIME:$(cor) %(%H:%M)T\n"

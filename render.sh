@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
 
-statman_dir="$(dirname -- "$0")"
-
 # Force reconcile
 sleep .5;
 

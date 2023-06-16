@@ -2,8 +2,7 @@
 
 # TODO: Module description
 
-statman_dir="$(dirname -- "$0")"
-source $statman_dir/shared.sh
+source "$statman_dir/shared.sh"
 
 ## Runtimes
 function statman_every_half_second() (

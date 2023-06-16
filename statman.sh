@@ -2,7 +2,8 @@
 
 set -e
 
-statman_dir="$(dirname -- "$0")"
+# This should be available in all scripts
+export statman_dir="$(dirname -- "$0")"
 
 echo "STARTING STATMAN"
 
