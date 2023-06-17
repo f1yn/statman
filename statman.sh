@@ -36,6 +36,7 @@ echo "-> Launching subroutines"
 statman_every_half_second &
 statman_every_second &
 statman_every_two_seconds &
+statman_every_five_seconds &
 statman_every_minute &
 statman_every_five_minutes &
 

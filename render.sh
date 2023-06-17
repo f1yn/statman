@@ -21,6 +21,7 @@ function render() {
     cat "$o/timekeeper"
     cat "$o/networking"
     cat "$o/virt-machines"
+    cat "$o/cpu-usage"
     cat "$o/memory-usage"
     cat "$o/volume"
     # advanced audio
