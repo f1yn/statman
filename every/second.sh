@@ -1,17 +1,20 @@
 #! /usr/bin/env bash
 
-# Import dependancies
+# Import dependencies
 source "$statman_dir/shared.sh"
 
 function render_time() {
     printf "$(co 11)TIME:$(cor) %(%H:%M)T\n"
 }
 
+##
+# Renders an individual timekeeper timescale
+# $1:width {number} - The full width of the bar
+# $2:percent_decimal {float} - The percentage of progresses of the timescale, represented as a float
 function timekeeper_bar_render() {
     local width="$1"
     local percent_decimal="$2"
 
-    # How many elements to render
     local fill_width=$(echo "scale=0; ($percent_decimal * $width) / 1" | bc)
     local output=""
 
@@ -28,6 +31,8 @@ function timekeeper_bar_render() {
     echo "$output"
 }
 
+##
+# Renders the Timekeeper as a series of custom sliders
 function render_timekeeper() {
     local timekeeper_file="$statman_readout_directory/timekeeper"
     local last_timekeeper_index="$(cat $timekeeper_file | head -n 1 | awk '{print $2}')"
@@ -43,7 +48,7 @@ function render_timekeeper() {
     local five_minutes_percent=$(echo "scale=4; 1 - ($index / 300)" | bc)
 
     # other percentages have factors (scale=0 does a floor)
-    # factor reprents the subset of the max duration that a different time scale uses
+    # factor represents the subset of the max duration that a different time scale uses
     # a factor is also floored, so we need to offset the factor by 1 so we can easily multiply it later
     local minute_factor=$(echo "scale=0; ($index / 60)" | bc)
     local minute_count=$(echo "scale=0; $index - $minute_factor * 60" | bc)

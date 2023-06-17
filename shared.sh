@@ -1,14 +1,16 @@
 #! /usr/bin/env bash
 
 ##
-# {directory} - Static detectory that statman will populate outputs and renders.
+# {directory} - Static directory that statman will populate outputs and renders.
+# Note: This should ALWAYS referrer to a memstore. If this can't be rendered, it means the linux
+# or other OS does not mount shm by default
 export statman_readout_directory="/dev/shm/readout-statman-$UID"
 
 ###
 ### TOP LEVEL HELPERS AND STATIC VALUES
 ###
 
-# Functions and values that are dependancices of other commands
+# Functions and values that are dependencies of other commands
 export columns="$(tput cols)"
 export columns_seq=$(seq $columns)
 export rows="$(tput lines)"
@@ -37,7 +39,7 @@ export empty_line="$(line ' ')"
 export color_default=${STATMAN_DEFAULT_COLOR:-7}
 
 ##
-# Renders a color code to the temrinal using the generic helper
+# Renders a color code to the terminal using the generic helper
 # Unlike base tput: this command will detect when colorized output is disabled
 # $1: code  The terminal color code to use (uses 64 based setaf functionality)
 function co() {
